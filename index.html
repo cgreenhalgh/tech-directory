@@ -1,0 +1,32 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Recommendations</h1>
+
+  <ul class="post-list">
+    {% for rec in site.data.recommendations %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ rec.url | prepend: site.baseurl }}">{{ rec.title }}</a>
+        </h2>
+        <span class="post-meta">{{ rec.date | date: "%b %-d, %Y" }}</span>
+
+
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h1 class="page-heading">Applications</h1>
+    {% assign apps = site.data.recommendations | uniq_tags: 'for' | sort %}
+  <ul class="post-list">
+    {% for app in apps %}
+      <li>{{ app }}</li>
+    {% endfor %}
+
+  </ul>
+
+
+</div>

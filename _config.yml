@@ -1,0 +1,13 @@
+# Site settings
+title: Tech Directory
+email: chris.greenhalgh@nottingham.ac.uk
+description: > # this means to ignore newlines until "baseurl:"
+  A template for a simple web directory of technology suggestions 
+  (or similar things).
+baseurl: "/tech-directory" # the subpath of your site, e.g. /blog/
+url: "http://cgreenhalgh.github.io" # the base hostname & protocol for your site
+#twitter_username: jekyllrb
+#github_username:  jekyll
+
+# Build settings
+markdown: kramdown

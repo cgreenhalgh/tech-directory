@@ -1,0 +1,21 @@
+# recommendations of technologies - core data
+- title: Test
+  for: home energy sensing
+- title: Test 2
+
+- title: Technology 1
+  url: http://www.cs.nott.ac.uk/~cmg
+  type: software
+  for:
+    - home energy sensing
+    - fishing
+  by: chris
+  date: 2016-01-07
+  because: >
+    It is totally awesome!
+  eg:
+    project: project X
+    date: 2016-01-07
+    by: chris
+    description: >
+      It totally held down the reciprocating doo-dah!
