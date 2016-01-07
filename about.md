@@ -4,8 +4,9 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+A directory of potentially useful tech things. 
 
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
+This is an initial template. The idea is to use it at the University of Nottingham within the [Horizon institute][horizon] and the [Mixed Reality Lab][mrl] to collect and share common practice.
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+[horizon]: http://www.horizon.ac.uk
+[mrl]: http://www.mrl.nott.ac.uk
