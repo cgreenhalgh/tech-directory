@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h1 class="page-heading">Recommendations</h1>
+
+  <ul class="post-list">
+    {% for rec in site.data.recommendations %}
+      <li>
+        <h2 id="{{ rec.title | slugify}}">
+          {{ rec.title }}</a>
+        </h2>
+        <p><span class="post-meta"><a href="{{ rec.url }}">{{ rec.url }}</a> 
+          <a href="index.html#{{ rec.type | slugify }}">{{ rec.type }}</a>
+          {{ rec.date | date: "%b %-d, %Y" }} <a href="index.html#{{ rec.by | slugify }}">{{ rec.by }}</a></span>
+        </p>
+        <p>Recommended for: 
+        {% for for in rec.for %}
+          <a href="index.html#{{ for | slugify }}">{{ for }}</a>
+        {% endfor %}
+        </p>
+        <p>Because... {{ rec.because }}</p>
+        {% if rec.if != null %}
+        <p>Example: used on {{ rec.eg.project }}, {{ rec.eg.date | date: "%b %-d, %Y" }} <a href="index.html#{{rec.eg.by | slugify }}">{{ rec.eg.by }} </a></p>
+        <p>{{ rec.eg.description }}</p>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>

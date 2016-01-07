@@ -10,11 +10,8 @@ layout: default
     {% for rec in site.data.recommendations %}
       <li>
         <h2>
-          <a class="post-link" href="{{ rec.url | prepend: site.baseurl }}">{{ rec.title }}</a>
+          <a class="post-link" href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{ rec.title }}</a>
         </h2>
-        <span class="post-meta">{{ rec.date | date: "%b %-d, %Y" }}</span>
-
-
       </li>
     {% endfor %}
   </ul>
@@ -23,10 +20,55 @@ layout: default
     {% assign apps = site.data.recommendations | uniq_tags: 'for' | sort %}
   <ul class="post-list">
     {% for app in apps %}
-      <li>{{ app }}</li>
+      <li>
+         <h2 id="{{ app | slugify }}">{{ app }}</h2>
+         <ul>
+           {% for rec in site.data.recommendations %}
+           {% if rec.for == app or rec.for contains app %}
+             <li><a href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{rec.title}}</a>{% if rec.type!=null %} ({{ rec.type }}){% endif %}</li>
+           {% endif %}
+           {% endfor %}
+         </ul>
+      </li>
     {% endfor %}
 
   </ul>
 
+  <h1 class="page-heading">Types</h1>
+    {% assign types = site.data.recommendations | uniq_tags: 'type' | sort %}
+  <ul class="post-list">
+    {% for type in types %}
+      <li>
+         <h2 id="{{ type | slugify }}">{{ type }}</h2>
+         <ul>
+           {% for rec in site.data.recommendations %}
+           {% if rec.type == type or rec.type contains type %}
+             <li><a href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{rec.title}}</a></li>
+           {% endif %}
+           {% endfor %}
+         </ul>
+      </li>
+    {% endfor %}
+
+  </ul>
+
+
+  <h1 class="page-heading">People</h1>
+    {% assign people = site.data.recommendations | uniq_tags: 'by' | sort %}
+  <ul class="post-list">
+    {% for person in people %}
+      <li>
+         <h2 id="{{ person | slugify }}">{{ person }}</h2>
+         <ul>
+           {% for rec in site.data.recommendations %}
+           {% if rec.by == person or rec.by contains person %}
+             <li><a href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{rec.title}}</a></li>
+           {% endif %}
+           {% endfor %}
+         </ul>
+      </li>
+    {% endfor %}
+
+  </ul>
 
 </div>
