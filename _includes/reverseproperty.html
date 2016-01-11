@@ -1,0 +1,16 @@
+{% comment %}Expects id, items, property (name) and title{% endcomment %}
+{% assign first = true %}
+{% for item in include.items %}
+  {% assign values = item[include.property] | uniq_tags %}
+  {% if values contains include.id %}
+    {% if first %}
+      {% assign first = false %}
+      <p>{{include.title}}:
+    {% endif %}
+    <a href="{{ site.baseurl }}/details.html#{{ item.title | slugify }}">{{ item.title }}</a>
+  {% endif %}
+{% endfor %}
+{% if first == false %}
+</p>
+{% endif %}
+

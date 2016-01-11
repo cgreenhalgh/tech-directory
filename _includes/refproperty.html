@@ -1,0 +1,10 @@
+{% comment %}Expects value and title{% endcomment %}
+{% if include.value != null %}
+<p>{{ include.title }}:
+{% assign values = include.value | uniq_tags | sort %}
+{% for v in values %}
+<a href="{{ site.baseurl }}/details.html#{{ v | slugify }}">{{ v }}</a>
+{% endfor %}
+</p>
+{% endif %}
+

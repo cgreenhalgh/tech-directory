@@ -4,28 +4,118 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Recommendations</h1>
+  <h1 class="page-heading">Details</h1>
+
+  <h2>Recommendations</h2>
 
   <ul class="post-list">
     {% for rec in site.data.recommendations %}
       <li>
-        <h2 id="{{ rec.title | slugify}}">
+        <h3 id="{{ rec.title | slugify}}">
           {{ rec.title }}</a>
-        </h2>
+        </h3>
         <p><span class="post-meta"><a href="{{ rec.url }}">{{ rec.url }}</a> 
-          <a href="index.html#{{ rec.type | slugify }}">{{ rec.type }}</a>
-          {{ rec.date | date: "%b %-d, %Y" }} <a href="index.html#{{ rec.by | slugify }}">{{ rec.by }}</a></span>
+          <a href="{{ site.baseurl }}/index.html#{{ rec.type | slugify }}">{{ rec.type }}</a>
+          {{ rec.date | date: "%b %-d, %Y" }}</span>
         </p>
         <p>Recommended for: 
-        {% for for in rec.for %}
-          <a href="index.html#{{ for | slugify }}">{{ for }}</a>
+        {% for f in rec.for | uniq_tags %}
+          <a href="{{ site.baseurl }}/index.html#{{ f | slugify }}">{{ f }}</a>
         {% endfor %}
         </p>
-        <p>Because... {{ rec.because }}</p>
-        {% if rec.if != null %}
-        <p>Example: used on {{ rec.eg.project }}, {{ rec.eg.date | date: "%b %-d, %Y" }} <a href="index.html#{{rec.eg.by | slugify }}">{{ rec.eg.by }} </a></p>
+        <p>By: <a href="{{ site.baseurl }}/index.html#{{ rec.by | slugify }}">{{ rec.by }}</a></p>
+
+        <p>Because: {{ rec.because }}</p>
+        {% if rec.eg != null %}
+        <p>Example: used on {{ rec.eg.project }}, {{ rec.eg.date | date: "%b %-d, %Y" }} <a href="{{ site.baseurl }}/index.html#{{rec.eg.by | slugify }}">{{ rec.eg.by }} </a></p>
         <p>{{ rec.eg.description }}</p>
         {% endif %}
+        <p>History:</p>
+        <li>
+          {% for h in rec.history %}
+            <li>{{ h.date | date: "%b %-d, %Y" }}: {{ h.status }} - {{ h.description }}</li>
+          {% endfor %}
+        </li>
+        {% include refproperty.html value=rec.partof title="Part of" %}
+        {% include refproperty.html value=rec.includes title="Includes" %}
+        {% include refproperty.html value=rec.seealso title="See also" %}
+        {% include refproperty.html value=rec.supercedes title="Supercedes" %}
+
+        {% include reverseproperty.html id=rec.title items=site.data.recommendations property="partof" title="Has part" %}
+        {% include reverseproperty.html id=rec.title items=site.data.recommendations property="includes" title="Included in" %}
+        {% include reverseproperty.html id=rec.title items=site.data.recommendations property="supercedes" title="Superceded by" %}
+        {% include reverseproperty.html id=rec.title items=site.data.projects property="used" title="Used in" %}
+
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Projects and Events</h2>
+
+  <ul class="post-list">
+    {% for rec in site.data.projects %}
+      <li>
+        <h3 id="{{ rec.title | slugify}}">
+          {{ rec.title }}</a>
+        </h3>
+        <p><span class="post-meta"><a href="{{ rec.url }}">{{ rec.url }}</a>
+          <a href="{{ site.baseurl }}/index.html#{{ rec.type | slugify }}">{{ rec.type }}</a>
+          {{ rec.date | date: "%b %-d, %Y" }}
+          {% if rec.enddate != null %}
+          - {{ rec.enddate | date: "%b %-d, %Y" }}
+          {% endif %}
+        </span>
+        </p>
+        {% include refproperty.html value=rec.people title="People" %}
+        {% include refproperty.html value=rec.ledby title="Led by" %}
+        {% include refproperty.html value=rec.contact title="Contact" %}
+
+        {% include refproperty.html value=rec.used title="Used" %}
+        {% include reverseproperty.html id=rec.title items=site.data.records property="of" title="Recorded in" %}
+
+
+        <p>Description: {{ rec.description }}</p>
+
+        {% include refproperty.html value=rec.partof title="Part of" %}
+        {% include reverseproperty.html id=rec.title items=site.data.projects property="partof" title="Has parts" %}
+
+        {% include refproperty.html value=rec.supported title="Supported" %}
+        {% include reverseproperty.html id=rec.title items=site.data.projects property="supported" title="Supported by" %}
+ 
+        {% if rec.fundedby != null %}
+        <p>Funded by:
+          {% for f in rec.fundedby %}
+            {{ f.funder }} ({{ f.reference }})
+          {% endfor %}
+        </p>
+        {% endif %}
+       </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Records</h2>
+
+  <ul class="post-list">
+    {% for rec in site.data.records %}
+      <li>
+        <h3 id="{{ rec.title | slugify}}">
+          {{ rec.title }}</a>
+        </h3>
+        <p><span class="post-meta"><a href="{{ rec.url }}">{{ rec.url }}</a>
+          <a href="{{ site.baseurl }}/index.html#{{ rec.type | slugify }}">{{ rec.type }}</a>
+          {{ rec.date | date: "%b %-d, %Y" }}
+          {% if rec.enddate != null %}
+          - {{ rec.enddate | date: "%b %-d, %Y" }}
+          {% endif %}
+        </span>
+        </p>
+        
+        {% include refproperty.html value=rec.of title="Of" %}
+        {% include refproperty.html value=rec.by title="By" %}
+
+        <p>{{ rec.description }}</p>
+        {% include refproperty.html value=rec.seealso title="See also" %}
+
       </li>
     {% endfor %}
   </ul>

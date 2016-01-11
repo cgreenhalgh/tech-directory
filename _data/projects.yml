@@ -1,0 +1,24 @@
+- title: project X
+  description: >
+    Very important project, currently classified. So I 
+    can't tell you anything about it. Sorry.
+  date: 2015-12-01
+  enddate: 2015-12-31
+  type: 'project'
+  contact: chris
+  ledby: chris
+  people: [chris]
+  supported: project X event 1
+  fundedby:
+   - funder: chris
+     reference: "0000001"
+
+- title: project X event 1
+  description: > 
+    Very interesting event, unfortunately also classified. Sorry.
+  date: 2015-12-23
+  type: event
+  contact: chris
+  partof: project X
+  used: [Technology 1]
+

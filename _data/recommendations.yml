@@ -19,3 +19,13 @@
     by: chris
     description: >
       It totally held down the reciprocating doo-dah!
+  history:
+    - status: stable
+      date: 2016-01-11
+      description: Version 1.0 public release
+  partof: Test
+  includes:
+    - Test 2
+  seealso: Test
+  supercedes: Test
+

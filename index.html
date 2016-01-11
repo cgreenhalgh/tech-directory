@@ -4,24 +4,48 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Recommendations</h1>
+  <h1 class="page-heading">Index</h1>
+
+  <h2>Technologies</h2>
 
   <ul class="post-list">
     {% for rec in site.data.recommendations %}
       <li>
-        <h2>
           <a class="post-link" href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{ rec.title }}</a>
-        </h2>
       </li>
     {% endfor %}
   </ul>
 
-  <h1 class="page-heading">Applications</h1>
+  <h2>Projects and Events</h2>
+
+  <ul class="post-list">
+    {% for rec in site.data.projects %}
+      <li>
+          <a class="post-link" href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{ rec.title }}</a>
+          {% if rec.date != null %}{{ rec.date | date: "%b %-d, %Y" }}{% endif %}
+          {% if rec.enddate != null %}- {{ rec.enddate | date: "%b %-d, %Y" }}{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h2>Records</h2>
+  <ul class="post-list">
+    {% for rec in site.data.records %}
+      <li>
+          <a class="post-link" href="{{ site.baseurl }}/details.html#{{ rec.title | slugify }}">{{ rec.title }}</a>
+          {% if rec.date != null %}{{ rec.date | date: "%b %-d, %Y" }}{% endif %}
+          {% if rec.enddate != null %}- {{ rec.enddate | date: "%b %-d, %Y" }}{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+
+
+  <h2>Applications</h2>
     {% assign apps = site.data.recommendations | uniq_tags: 'for' | sort %}
   <ul class="post-list">
     {% for app in apps %}
       <li>
-         <h2 id="{{ app | slugify }}">{{ app }}</h2>
+         <h3 id="{{ app | slugify }}">{{ app }}</h3>
          <ul>
            {% for rec in site.data.recommendations %}
            {% if rec.for == app or rec.for contains app %}
@@ -34,12 +58,12 @@ layout: default
 
   </ul>
 
-  <h1 class="page-heading">Types</h1>
+  <h2>Technology Types</h2>
     {% assign types = site.data.recommendations | uniq_tags: 'type' | sort %}
   <ul class="post-list">
     {% for type in types %}
       <li>
-         <h2 id="{{ type | slugify }}">{{ type }}</h2>
+         <h3 id="{{ type | slugify }}">{{ type }}</h3>
          <ul>
            {% for rec in site.data.recommendations %}
            {% if rec.type == type or rec.type contains type %}
@@ -53,12 +77,13 @@ layout: default
   </ul>
 
 
-  <h1 class="page-heading">People</h1>
+  <h2>People</h2>
     {% assign people = site.data.recommendations | uniq_tags: 'by' | sort %}
+    <!-- missing people from other places - projects, records -->
   <ul class="post-list">
     {% for person in people %}
       <li>
-         <h2 id="{{ person | slugify }}">{{ person }}</h2>
+         <h3 id="{{ person | slugify }}">{{ person }}</h3>
          <ul>
            {% for rec in site.data.recommendations %}
            {% if rec.by == person or rec.by contains person %}

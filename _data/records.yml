@@ -1,0 +1,10 @@
+- title: Logs for project X event 1
+  description: >
+    Strangely, logs for project X's event 1.
+  of: project X event 1
+  url: http://www.cs.nott.ac.uk
+  type: dataset
+  by: chris
+  date: 2015-12-25
+  seealso: project X
+
