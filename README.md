@@ -13,7 +13,11 @@ To update make the changes, then to build and test:
 jekyll server --baseurl ''
 ```
 
-When you are happy check everything (including generated `_site/`) into 
+When you are happy re-build ready for github:
+```
+jekyll build
+```
+and check everything (including generated `_site/`) into 
 `master` branch and:
 ```
 git branch -D gh-pages
