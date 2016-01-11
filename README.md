@@ -61,9 +61,8 @@ Latest version should now be visible on [github](http://cgreenhalgh.github.io/te
 - `date` - key date, typically start date
 - `enddate`
 - `type`, e.g. `project` or `event`
-- `people` involved
+- `people` involved, array of objects with `name` (required) and `role` 
 - `contact` person
-- `ledby` (e.g. PI)
 - `supported` other projects, events or technologies
 - `fundedby`, object with properties `funder` and `reference`
 - `partof` another project

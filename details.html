@@ -66,8 +66,12 @@ layout: default
           {% endif %}
         </span>
         </p>
-        {% include refproperty.html value=rec.people title="People" %}
-        {% include refproperty.html value=rec.ledby title="Led by" %}
+        <p>People:
+        {% for p in rec.people %}
+          <a href="{{ site.baseurl }}/details.html#{{ p.name | slugify }}">{{ p.name }}</a>
+          {% if p.role != null %} ({{ p.role }}){% endif %}
+        {% endfor %}
+        </p>
         {% include refproperty.html value=rec.contact title="Contact" %}
 
         {% include refproperty.html value=rec.used title="Used" %}

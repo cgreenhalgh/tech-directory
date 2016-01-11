@@ -6,8 +6,10 @@
   enddate: 2015-12-31
   type: 'project'
   contact: chris
-  ledby: chris
-  people: [chris]
+  people:
+   - name: chris
+     role: tech lead
+   - name: tim
   supported: project X event 1
   fundedby:
    - funder: chris
